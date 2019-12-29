@@ -21,7 +21,7 @@ from ..util import as_unicode, isIn, indexOf
 from ..viewable import Layoutable
 from .base import Widget, CompositeWidget
 from .button import _ButtonBase, Button
-from .input import TextInput
+from .input import TextInput, TextAreaInput
 
 
 class SelectBase(Widget):
@@ -385,18 +385,26 @@ class CrossSelector(CompositeWidget, MultiSelect):
         self._search[False].param.watch(self._filter_options, 'value')
         self._search[True].param.watch(self._filter_options, 'value')
 
+        self._placeholder = TextAreaInput(
+            placeholder=("To select an item highlight it on the left "
+                         "and use the arrow button to move it to the right."),
+            disabled=True, height=self.height-50, width=width, **layout
+        )
+        right = self._lists[True] if self.value else self._placeholder
+
         # Define Layout
-        blacklist = Column(self._search[False], self._lists[False], **layout)
-        whitelist = Column(self._search[True], self._lists[True], **layout)
+        self._blacklist = Column(self._search[False], self._lists[False], **layout)
+        self._whitelist = Column(self._search[True], right, **layout)
         buttons = Column(self._buttons[True], self._buttons[False])
 
-        self._composite = Row(blacklist, Column(VSpacer(), buttons, VSpacer()), whitelist,
-                              css_classes=self.css_classes, margin=self.margin, **layout)
+        self._composite = Row(
+            self._blacklist, Column(VSpacer(), buttons, VSpacer()), self._whitelist,
+            css_classes=self.css_classes, margin=self.margin, **layout
+        )
 
         self._selected = {False: [], True: []}
         self._query = {False: '', True: ''}
         self.param.watch(self._update_layout_params, list(Layoutable.param))
-
 
     def _update_layout_params(self, *events):
         for event in events:
@@ -501,6 +509,10 @@ class CrossSelector(CompositeWidget, MultiSelect):
         leftovers = OrderedDict([(k, k) for k in other if k not in new])
         self._lists[selected].options = merged if merged else {}
         self._lists[not selected].options = leftovers if leftovers else {}
+        if len(self._lists[True].options):
+            self._whitelist[1] = self._lists[True]
+        else:
+            self._whitelist[1] = self._placeholder
         self.value = [self._items[o] for o in self._lists[True].options if o != '']
         self._apply_filters()
 
