@@ -68,7 +68,7 @@ jobs:
       install:
         - sudo conda create -n test-environment python=$PYTHON_VERSION
         - source activate test-environment
-        - sudo conda install -c conda-forge mesalib
+        - sudo pip install Mesa
         - sudo pip install flake8 parameterized pytest scipy "nbsmoke >=0.2.0" "pytest-cov ==2.5.1" codecov hvplot plotly altair streamz vega_datasets "vtk ==8.1.1" scikit-learn datashader jupyter_bokeh
         - bokeh sampledata
       before_script:
