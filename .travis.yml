@@ -68,6 +68,8 @@ jobs:
       install:
         - sudo conda create -n test-environment python=$PYTHON_VERSION
         - source activate test-environment
+        - sudo conda install conda
+        - sudo conda install -c anaconda vtk
         - sudo add-apt-repository "deb http://ports.ubuntu.com/ubuntu-ports/  eoan main universe"
         - sudo apt-get update
         - sudo apt-get install python-dev
