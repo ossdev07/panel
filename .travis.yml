@@ -59,7 +59,7 @@ jobs:
         - sudo add-apt-repository "deb http://ports.ubuntu.com/ubuntu-ports/  eoan main universe"
         - sudo apt-get update
         - sudo apt-get install python3-pip
-        - sudo pip3 install vtk ==8.1.1
+        - sudo pip3 install "vtk ==8.1.1"
         - sudo pip install pyctdev
         - wget "https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh" -O archiconda.sh
         - chmod +x archiconda.sh
