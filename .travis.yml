@@ -68,13 +68,11 @@ jobs:
       install:
         - sudo conda create -n test-environment python=$PYTHON_VERSION
         - source activate test-environment
-        - sudo conda install conda
-        - sudo conda install -c anaconda vtk
         - sudo add-apt-repository "deb http://ports.ubuntu.com/ubuntu-ports/  eoan main universe"
         - sudo apt-get update
         - sudo apt-get install python-dev
         - sudo pip install Cython Mesa
-        - sudo pip install flake8 parameterized pytest scipy "nbsmoke >=0.2.0" "pytest-cov ==2.5.1" codecov hvplot plotly altair streamz vega_datasets vtk scikit-learn datashader jupyter_bokeh
+        - sudo pip install flake8 parameterized pytest scipy "nbsmoke >=0.2.0" "pytest-cov ==2.5.1" codecov hvplot plotly altair streamz vega_datasets scikit-learn datashader jupyter_bokeh
         - bokeh sampledata
       before_script:
         - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x24"
