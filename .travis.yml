@@ -85,7 +85,7 @@ jobs:
         - sudo pip install flake8 parameterized pytest scipy "nbsmoke >=0.2.0" "pytest-cov ==2.5.1" codecov hvplot plotly altair streamz vega_datasets scikit-learn datashader jupyter_bokeh
         - bokeh sampledata
       before_script:
-        - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x24"
+        - sudo "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x24"
         - sleep 3
       script: sudo doit test_all_recommended
       after_failure:
