@@ -68,6 +68,8 @@ jobs:
       install:
         - sudo conda create -n test-environment python=$PYTHON_VERSION
         - source activate test-environment
+        - sudo add-apt-repository "deb http://ports.ubuntu.com/ubuntu-ports/  eoan main universe"
+        - sudo apt-get update
         - sudo apt-get install python-dev
         - sudo pip install Cython Mesa
         - sudo pip install flake8 parameterized pytest scipy "nbsmoke >=0.2.0" "pytest-cov ==2.5.1" codecov hvplot plotly altair streamz vega_datasets "vtk ==8.1.1" scikit-learn datashader jupyter_bokeh
