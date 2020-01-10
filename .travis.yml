@@ -70,6 +70,7 @@ jobs:
         - source activate test-environment
         - sudo add-apt-repository "deb http://ports.ubuntu.com/ubuntu-ports/  eoan main universe"
         - sudo apt-get update
+        - sudo apt-get install xorg xvfb
         - sudo apt-get install llvm-8
         - llvm-config --version 
         - sudo llvm-config --version
