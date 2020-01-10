@@ -70,8 +70,17 @@ jobs:
         - source activate test-environment
         - sudo add-apt-repository "deb http://ports.ubuntu.com/ubuntu-ports/  eoan main universe"
         - sudo apt-get update
+        - sudo apt-get install llvm-8
+        - llvm-config --version 
+        - sudo llvm-config --version
+        - sudo which llvm-config
+        - export LLVM_CONFIG="/usr/bin/llvm-config-8"
+        - sudo echo $LLVM_CONFIG
+        - sudo apt-get install libedit-dev zlib1g zlib1g-dev
         - sudo apt-get install python-dev
         - sudo pip install Cython Mesa
+        - sudo apt-get install libblas3 liblapack3 liblapack-dev libblas-dev
+        - sudo curl -s https://packagecloud.io/install/repositories/abeja/platform-public/script.deb.sh | sudo bash
         - sudo pip install flake8 parameterized pytest scipy "nbsmoke >=0.2.0" "pytest-cov ==2.5.1" codecov hvplot plotly altair streamz vega_datasets scikit-learn datashader jupyter_bokeh
         - bokeh sampledata
       before_script:
