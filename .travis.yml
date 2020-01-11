@@ -85,7 +85,7 @@ jobs:
         - sudo apt-get install libblas3 liblapack3 liblapack-dev libblas-dev gfortran g++
         - sudo curl -s https://packagecloud.io/install/repositories/abeja/platform-public/script.deb.sh | sudo bash
         - sudo conda install conda
-        - sudo pip install jupyter_bokeh nbsmoke flake8 pytest nbsmoke param pyviz-comms "pytest-cov==2.5.1" scipy hvplot plotly altair streamz vega_datasets
+        - sudo pip install jupyter_bokeh nbsmoke flake8 pytest nbsmoke param pyviz-comms "pytest-cov==2.5.1" scipy altair
         # sudo conda install flake8 pytest
         # sudo conda install flake8 parameterized pytest scipy "nbsmoke >=0.2.0" "pytest-cov ==2.5.1" codecov hvplot plotly altair streamz vega_datasets scikit-learn datashader jupyter_bokeh
         - bokeh sampledata
